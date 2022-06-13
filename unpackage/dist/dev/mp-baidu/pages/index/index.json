@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "component": true,
+  "usingComponents": {
+    "drop-down": "/uni_modules/drop-down/components/drop-down/drop-down"
+  }
+}
