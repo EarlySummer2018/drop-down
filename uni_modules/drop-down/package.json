@@ -6,9 +6,9 @@
   "keywords": [
     "drop-down"
 ],
-  "repository": "",
+  "repository": "https://github.com/EarlySummer2018/drop-down.git",
   "engines": {
-    "HBuilderX": "^3.1.0"
+    "HBuilderX": "^3.1.20"
   },
   "dcloudext": {
     "category": [
@@ -27,9 +27,9 @@
       "qq": ""
     },
     "declaration": {
-      "ads": "",
-      "data": "",
-      "permissions": ""
+      "ads": "无",
+      "data": "插件不采集任何数据",
+      "permissions": "无"
     },
     "npmurl": ""
   },
@@ -38,12 +38,12 @@
     "encrypt": [],
     "platforms": {
       "cloud": {
-        "tcb": "u",
-        "aliyun": "u"
+        "tcb": "y",
+        "aliyun": "y"
       },
       "client": {
         "Vue": {
-          "vue2": "u",
+          "vue2": "y",
           "vue3": "u"
         },
         "App": {
@@ -52,26 +52,26 @@
         },
         "H5-mobile": {
           "Safari": "u",
-          "Android Browser": "u",
-          "微信浏览器(Android)": "u",
-          "QQ浏览器(Android)": "u"
+          "Android Browser": "y",
+          "微信浏览器(Android)": "y",
+          "QQ浏览器(Android)": "y"
         },
         "H5-pc": {
-          "Chrome": "u",
-          "IE": "u",
-          "Edge": "u",
-          "Firefox": "u",
+          "Chrome": "y",
+          "IE": "n",
+          "Edge": "y",
+          "Firefox": "y",
           "Safari": "u"
         },
         "小程序": {
-          "微信": "u",
-          "阿里": "u",
-          "百度": "u",
+          "微信": "y",
+          "阿里": "y",
+          "百度": "y",
           "字节跳动": "u",
-          "QQ": "u",
+          "QQ": "y",
           "钉钉": "u",
           "快手": "u",
-          "飞书": "u",
+          "飞书": "y",
           "京东": "u",
           "小红书": "u"
         },

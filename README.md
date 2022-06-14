@@ -32,7 +32,7 @@ const filterData = [{
 
 ## 使用
 
->[从uniapp插件市场导入](https://ext.dcloud.net.cn/)
+>[从uniapp插件市场导入](https://ext.dcloud.net.cn/plugin?name=drop-down)
 
 ```html
 <template>
