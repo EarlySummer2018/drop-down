@@ -81,12 +81,6 @@
 				type: Boolean,
 				default: false
 			},
-			defaultVal: {
-				type: Array,
-				default () {
-					return []
-				}
-			},
 			resetStow: {
 				type: Boolean,
 				default: false
@@ -113,9 +107,6 @@
 				// 单选/多选
 				filter: [],
 				radio: [],
-
-				// 默认值
-				default: []
 			}
 		},
 		watch: {
@@ -126,20 +117,15 @@
 				handler(newVal) {
 					this.menuData = JSON.parse(JSON.stringify(newVal));
 					this.init();
+					this.addIdentity(this.menuData, 0)
 				},
 				immediate: true,
 				deep: true
 			},
-
-			defaultVal(nVal) {
-				this.default = [...nVal]
-				this.renderDefault()
-			}
 		},
 		created() {
-			this.default = [...this.defaultVal]
 			this.init();
-			this.renderDefault()
+			this.addIdentity(this.menuData, 0)
 		},
 		methods: {
 			init() {
@@ -159,63 +145,21 @@
 				this.menu = tmpMenu;
 			},
 
-			// 渲染选中默认值
-			renderDefault() {
-				const len = this.default.length
-				let nav_level, first_level, second_level, three_level, four_level;
-				switch (len) {
-					case 1:
-						first_level = this.menuData[this.default[0]]
-						nav_level && (nav_level.checked = true)
-						break;
-					case 2:
-						first_level = this.menuData[this.default[0]]
-						second_level = first_level[this.childName][this.default[1]]
-						if (second_level) {
-							second_level.checked = true
-							second_level.fileds = 'current'
-						}
-						break;
-					case 3:
-						first_level = this.menuData[this.default[0]]
-						second_level = first_level[this.childName][this.default[1]]
-						if (second_level) {
-							second_level.checked = true
-							second_level.fileds = 'current'
-						}
-						three_level = second_level[this.childName][this.default[2]]
-						if (second_level) {
-							three_level.checked = true
-							three_level.fileds = 'sec_current'
-						}
-						break;
-					case 4:
-						first_level = this.menuData[this.default[0]]
-						second_level = first_level[this.childName][this.default[1]]
-						if (second_level) {
-							second_level.checked = true
-							second_level.fileds = 'current'
-						}
-						three_level = second_level[this.childName][this.default[2]]
-						if (second_level) {
-							three_level.checked = true
-							three_level.fileds = 'sec_current'
-						}
-						four_level = three_level[this.childName][this.default[3]]
-						if (second_level) {
-							four_level.checked = true
-							four_level.fileds = 'sec2_current'
-						}
-						break;
-					default:
-						break;
-				}
+			// 为每一项添加标识
+			addIdentity(data, level = 0) {
+				if (!data || !data.length) return
+				data.forEach(item => {
+					item.drop_item_identity = level
+					if (item[this.childName] && item[this.childName].length) {
+						this.addIdentity(item[this.childName], level + 1)
+					}
+				})
 			},
 
 			//写入结果，筛选
 			confirmFilter() {
-				console.log('确定筛选');
 				const data = [...this.filter, ...this.radio, ...this.columns]
+				console.log(data)
 				this.$emit('confirm', data)
 				this.closeMeun(true)
 			},
@@ -324,6 +268,8 @@
 				result.forEach(el => {
 					delete el.drop_item_key
 					delete el.pKey
+					delete el.drop_item_identity
+					delete el.parent_type
 				})
 
 				// 判断是否需要返回子菜单

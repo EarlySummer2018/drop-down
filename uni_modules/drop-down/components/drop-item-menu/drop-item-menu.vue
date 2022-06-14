@@ -122,6 +122,8 @@
 				sec_current: -1,
 				sec2_current: -1,
 				newItem: [],
+				deepIndex: 0,
+				attr: ['current', 'sec_current', 'sec2_current']
 			}
 		},
 		created() {
@@ -135,13 +137,12 @@
 			},
 			setKey(item) {
 				if (item[this.childName]) {
-					this.deepIndex += 1
 					if (item[this.childName].length) {
 						item[this.childName].forEach(el => {
 							el.drop_item_key = guid()
 							el.checked = el.checked ? el.checked : false
 							if (el.checked) {
-								this[el.fileds] = el.drop_item_key
+								this[this.attr[el.drop_item_identity - 1]] = el.drop_item_key
 							}
 							this.setKey(el)
 						})

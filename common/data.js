@@ -37,13 +37,16 @@ export default [{
 			},
 			{
 				"name": '美食',
+				checked: true,
 				"submenu": [{
 						"name": "全部美食",
 					},
 					{
 						"name": "快餐小吃",
+						checked: true,
 						"submenu": [{
 							"name": "中式快餐",
+							"checked": true
 						}, {
 							"name": "西式快餐",
 							"value": "西式快餐"
@@ -1664,6 +1667,7 @@ export default [{
 				"name": "优惠",
 				"submenu": [{
 						"name": "满减活动",
+						checked: true,
 						"value": "满减活动"
 					},
 					{
@@ -1672,6 +1676,7 @@ export default [{
 					},
 					{
 						"name": "会员专享",
+						checked: true,
 						"value": "会员专享"
 					}
 				]
@@ -1688,7 +1693,8 @@ export default [{
 					},
 					{
 						"name": "外卖",
-						"value": "外卖"
+						"value": "外卖",
+						checked: true,
 					},
 					{
 						"name": "WIFI",
@@ -1696,7 +1702,8 @@ export default [{
 					},
 					{
 						"name": "停车位",
-						"value": "停车位"
+						"value": "停车位",
+						checked: true,
 					},
 					{
 						"name": "无烟区",
@@ -1704,7 +1711,8 @@ export default [{
 					},
 					{
 						"name": "包厢",
-						"value": "包厢"
+						"value": "包厢",
+						checked: true,
 					},
 					{
 						"name": "营业中",
@@ -1724,7 +1732,8 @@ export default [{
 					},
 					{
 						"name": "100-300",
-						"value": "100-300"
+						"value": "100-300",
+						checked: true,
 					},
 					{
 						"name": "300以上",
@@ -1745,7 +1754,8 @@ export default [{
 					},
 					{
 						"name": "打折优惠",
-						"value": "打折优惠"
+						"value": "打折优惠",
+						checked: true,
 					},
 					{
 						"name": "会员专享",
@@ -1765,7 +1775,8 @@ export default [{
 					},
 					{
 						"name": "外卖",
-						"value": "外卖"
+						"value": "外卖",
+						checked: true,
 					},
 					{
 						"name": "WIFI",
@@ -1793,7 +1804,8 @@ export default [{
 				"name": "价格(单选)",
 				"submenu": [{
 						"name": "50以下",
-						"value": "50以下"
+						"value": "50以下",
+						checked: true,
 					},
 					{
 						"name": "50-100",
@@ -1801,7 +1813,8 @@ export default [{
 					},
 					{
 						"name": "100-300",
-						"value": "100-300"
+						"value": "100-300",
+						checked: true,
 					},
 					{
 						"name": "300以上",

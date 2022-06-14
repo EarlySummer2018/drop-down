@@ -91,13 +91,22 @@
 				this.newItem.drop_item_key = guid()
 				this.setKey(this.newItem)
 			},
-			setKey(item) {
+			setKey(item, pKey = '') {
 				if (item[this.childName]) {
 					if (item[this.childName].length) {
 						item[this.childName].forEach(el => {
 							el.drop_item_key = guid()
 							el.checked = el.checked ? el.checked : false
-							this.setKey(el)
+							el.parent_type = this.type
+							if (el.checked) {
+								if (el.parent_type === 'filter') {
+									this.selectFilterArr.push(el)
+									this.filter.push(el.drop_item_key)
+								} else if (el.parent_type === 'radio') {
+									this.selectRadioLabel(el, pKey)
+								}
+							}
+							this.setKey(el, el.drop_item_key)
 						})
 					}
 				} else {
@@ -110,8 +119,13 @@
 			selectFilterLabel(item, key) {
 				// 已选中，已选中 ? 移除选中 : 添加选中
 				const sIdx = this.selectFilterArr.findIndex(el => el.drop_item_key == key)
-				if (sIdx >= 0) this.selectFilterArr.splice(sIdx, 1)
-				else this.selectFilterArr.push(item)
+				if (sIdx >= 0) {
+					item.checked = false
+					this.selectFilterArr.splice(sIdx, 1)
+				} else {
+					item.checked = true
+					this.selectFilterArr.push(item)
+				}
 
 				// 已选中，已选中 ? 移除选中的 key : 添加选中的 key
 				const fIdx = this.filter.findIndex(el => el == key)
@@ -127,13 +141,17 @@
 				if (sIdx >= 0 && this.selectRadioArr[sIdx].drop_item_key === item.drop_item_key) {
 					this.selectRadioArr
 						.splice(sIdx, 1)
+					item.checked = false
 				} else if (sIdx >= 0 && this.selectRadioArr[sIdx].drop_item_key !== item.drop_item_key) {
+					this.selectRadioArr[sIdx].checked = false
+					item.checked = true
 					this.selectRadioArr
 						.splice(sIdx, 1, {
 							pKey: key,
 							...item
 						})
 				} else {
+					item.checked = true
 					this.selectRadioArr.push({
 						pKey: key,
 						...item
@@ -159,13 +177,13 @@
 				this.$emit('change', this.selectRadioArr)
 			},
 
-			// 移除 guid 和自定义属性 checked 再返回
-			removeGuid(filed) {
-				// 由于 drop_item_key 是组件渲染是自动生成的，不需要反馈回去，所以需要移除
+			// 移除 guid 和自定义属性 drop_item_identity 再返回
+			removeCustomAttributes(filed) {
+				// 由于 drop_item_key 和 drop_item_identity 是组件渲染是自动生成的，不需要反馈回去，所以需要移除
 				const arr = JSON.parse(JSON.stringify(this[filed]))
 				arr.forEach(el => {
 					delete el.drop_item_key
-					delete el.checked
+					delete el.drop_item_identity
 					el[this.childName] && el[this.childName].forEach(ele => {
 						delete ele.drop_item_key
 						delete el.checked
