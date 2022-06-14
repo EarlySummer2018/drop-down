@@ -115,10 +115,10 @@
 				type: String,
 				default: 'submenu'
 			},
-			columns: {
-				type: String,
-				default: 'columns1'
-			}
+			autoStow: {
+				type: Boolean,
+				default: true
+			},
 		},
 		data() {
 			return {
@@ -127,7 +127,8 @@
 				sec2_current: -1,
 				newItem: [],
 				deepIndex: 0,
-				attr: ['current', 'sec_current', 'sec2_current']
+				attr: ['current', 'sec_current', 'sec2_current'],
+				selectArr: [],
 			}
 		},
 		created() {
@@ -147,6 +148,7 @@
 							el.checked = el.checked ? el.checked : false
 							if (el.checked) {
 								this[this.attr[el.drop_item_identity - 1]] = el.drop_item_key
+								this.selectArr.push(el)
 							}
 							this.setKey(el)
 						})
@@ -157,46 +159,51 @@
 				}
 			},
 			selectFirst(data) {
-				const item = this.result(data, 'current')
+				this.result(data, 'current')
 				this.sec_current = -1
 				this.sec2_current = -1
-				const show = data[this.childName].length == 0 ? true : false
-				this.$emit('first', {
-					item,
-					show,
-					col: this.columns
-				})
+				this.isExist(data, 0)
 			},
 			selectSec(data) {
-				const item = this.result(data, 'sec_current')
+				this.result(data, 'sec_current')
 				this.sec2_current = -1
-				const show = data[this.childName].length == 0 ? true : false
-				this.$emit('second', {
-					item,
-					show,
-					col: this.columns
-				})
+				this.isExist(data, 1)
 			},
 			selectSec2(data) {
-				const item = this.result(data, 'sec2_current')
-				const show = data[this.childName].length == 0 ? true : false
-				this.$emit('third', {
-					item,
-					show,
-					col: this.columns
-				})
+				this.result(data, 'sec2_current')
+				this.isExist(data, 2)
+				
 			},
 
 			result(data, filed) {
-				let item = {}
 				if (this[filed] !== data.drop_item_key) {
 					this[filed] = data.drop_item_key
-					item = data
 				} else {
+					if(this.autoStow) return
 					this[filed] = -1
-					item = {}
 				}
-				return item
+			},
+			
+			// 判断是否已经选择,如果已选中就剔除,否则选中
+			isExist(item, type) {
+				const current = this.selectArr[type]
+				if(current&&current.drop_item_key===item.drop_item_key) {
+					if(!this.autoStow) {
+						item.checked = false
+						if(type===0) this.selectArr = []
+						else this.selectArr.splice(type, this.selectArr.length-1)
+					}
+				}else if (current&&current.drop_item_key!==item.drop_item_key){
+					this.selectArr.splice(type+1, this.selectArr.length-1)
+					this.selectArr.fill(item,type,type+1)
+					this.selectArr[type].checked = false
+					item.checked = true
+				}else {
+					this.selectArr.push(item)
+					item.checked = true
+				}
+				const show = item[this.childName].length == 0 ? true : false
+				this.$emit("close", show)
 			}
 		}
 	}

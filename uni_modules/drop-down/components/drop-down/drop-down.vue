@@ -18,16 +18,16 @@
 			<block v-for="(item,index) in menuData" :key="index">
 				<view class="sub-menu-class" :class="{'show':current==index,'hide':!pageState[index]}">
 					<block v-if="(item.type=='hierarchy'||item.type=='hierarchy-column')&& item[childName].length>0">
-						<drop-item-menu :item="item" :columns="`columns${index+1}`" :firstScrollInto="firstScrollInto"
+						<drop-item-menu :item="item" :firstScrollInto="firstScrollInto"
 							:secondScrollInto="secondScrollInto" :thirdScrollInto="thirdScrollInto"
-							:childName="childName" :fileds="fileds" @first="first" @second="second" @third="third"
-							ref="itemMenu" style="width: 100%;">
+							:childName="childName" :fileds="fileds"
+							ref="itemMenu" style="width: 100%;" @close="emitColse">
 						</drop-item-menu>
 					</block>
 					<!-- 多选筛选 -->
 					<block v-if="item.type=='filter'">
 						<view class="filter">
-							<drop-item :item="item" @change="changeFilterItem" :childName="childName" :fileds="fileds">
+							<drop-item :item="item" :childName="childName" :fileds="fileds" ref="dropItem">
 							</drop-item>
 						</view>
 					</block>
@@ -35,8 +35,8 @@
 					<!-- 单选筛选 -->
 					<block v-if="item.type=='radio'">
 						<view class="filter">
-							<drop-item :item="item" type="radio" @change="changeRadioItem" :childName="childName"
-								:fileds="fileds"></drop-item>
+							<drop-item :item="item" type="radio" :childName="childName"
+								:fileds="fileds" ref="dropItem"></drop-item>
 						</view>
 					</block>
 					<view class="btn-box" v-if="!autoStow||item.type=='filter'||item.type=='radio'">
@@ -107,6 +107,8 @@
 				// 单选/多选
 				filter: [],
 				radio: [],
+				
+				result: [],
 			}
 		},
 		watch: {
@@ -158,22 +160,46 @@
 
 			//写入结果，合并
 			confirmFilter() {
-				const data = {}
-				console.log(this.columns);
-				this.$emit('confirm', data)
+				this.result = []
+				this.getListValue()
+				this.getFilterOrRadioValue()
+				this.formatResult()
 				this.closeMeun(true)
 			},
 			//重置结果和ui，筛选
 			resetFilter(page_index) {
-				const items = this.$refs.itemMenu
-				items.forEach(item => {
-					item.current = -1
-					item.sec_current = -1
-					item.sec2_current = -1
+				const components1 = this.$refs.itemMenu
+				components1.forEach(component => {
+					component.current = -1
+					component.sec_current = -1
+					component.sec2_current = -1
+					component.selectArr = []
+				})
+				const components2 = this.$refs.dropItem
+				components2.forEach(component=>{
+					component.selectFilterArr = []
+					component.selectRadioArr = []
+					component.filter = []
+					component.radio = []
 				})
 				if (this.resetStow) this.closeMeun(this.resetStow)
-				this.$emit('reset', [])
-				this.closeMeun(true)
+				this.confirmFilter()
+			},
+			
+			// 取类型为 filter 或 radio 的选中值
+			getFilterOrRadioValue() {
+				const components = this.$refs.dropItem
+				components.forEach(component=>{
+					this.result.push(...component.selectFilterArr, ...component.selectRadioArr)
+				})
+			},
+			
+			// 取类型为 列表筛选 的选中值
+			getListValue() {
+				const components = this.$refs.itemMenu
+				components.forEach(component=>{
+					this.result.push(...component.selectArr)
+				})
 			},
 
 			//菜单开关
@@ -252,63 +278,36 @@
 				})
 			},
 
-			// 选中filter类型item中的每一项
-			changeFilterItem(val) {
-				this.filter = this.formatResult(val)
-			},
-
-			// 选中radio类型item中的每一项
-			changeRadioItem(val) {
-				this.radio = this.formatResult(val)
-			},
-
 			// 处理结果并返回
-			formatResult(val) {
-				const result = JSON.parse(JSON.stringify(val))
-				result.forEach(el => {
+			formatResult() {
+				const result = JSON.parse(JSON.stringify(this.result))
+				const data = this.removeCustomAttributes(result)
+				this.$emit('confirm', data)
+			},
+
+			emitColse(flag) {
+				if (this.autoStow && flag) {
+					this.confirmFilter()
+				}
+			},
+			closeMeun(show) {
+				if (show) this.hideMenu(true);
+			},
+			
+			// 移除组件自定义属性
+			removeCustomAttributes(data) {
+				if(!data || !data.length) return []
+				data.forEach(el => {
 					delete el.drop_item_key
 					delete el.pKey
 					delete el.drop_item_identity
 					delete el.parent_type
+					!this.isChild && delete el[this.childName]
+					if(this.isChild && el[this.childName]) {
+						 this.removeCustomAttributes(el[this.childName])
+					}
 				})
-
-				// 判断是否需要返回子菜单
-				if (!this.isChild) {
-					result.forEach(el => {
-						delete el[this.childName]
-					})
-				}
-				return result
-			},
-
-			first(obj) {
-				this.columns = {}
-				this.columns[obj.col] = this.columns[obj.col] ? this.columns[obj.col] : [],
-					console.log(this.columns);
-				if (obj.item.drop_item_key) this.columns[obj.col].push(obj.item)
-				else this.columns[obj.col].splice(0, 1)
-				if (this.autoStow && obj.show) {
-					this.confirmFilter()
-				}
-			},
-			second(obj) {
-				if (this.columns[obj.col][2]) this.columns[obj.col].splice(2, 1)
-				if (obj.item.drop_item_key) this.columns[obj.col].splice(1, 1, obj.item)
-				else this.columns[obj.col].splice(1, 1)
-				if (this.autoStow && obj.show) {
-					this.confirmFilter()
-				}
-			},
-			third(obj) {
-				if (obj.item.drop_item_key) this.columns[obj.col].splice(2, 1, obj.item)
-				else this.columns[obj.col].splice(2, 1)
-				if (this.autoStow && obj.show) {
-					this.confirmFilter()
-				}
-			},
-
-			closeMeun(show) {
-				if (show) this.hideMenu(true);
+				return data
 			}
 		}
 	}
@@ -385,7 +384,7 @@
 
 				.name::after {
 					background-color: $uni-color-primary;
-					transform: translate(230%, -50%) rotateZ(-40deg);
+					transform: translate(210%, -50%) rotateZ(-40deg);
 				}
 			}
 
@@ -413,7 +412,7 @@
 				}
 
 				&::after {
-					transform: translate(230%, -50%) rotateZ(40deg);
+					transform: translate(210%, -50%) rotateZ(40deg);
 				}
 			}
 		}

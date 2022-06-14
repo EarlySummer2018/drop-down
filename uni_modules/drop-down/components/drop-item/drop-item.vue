@@ -46,7 +46,6 @@
 		 * @property {Array}						fileds  		显示的字段（默认 ["name", "label"]）
 		 * @property {String}						childName  		子菜单字段（默认 submenu）
 		 * @property {String}						type  			类型	（默认 filter，可选项 radio）
-		 * @property {Function() <array> {}}		change  		返回选中的当前对象，返回值为数组
 		 * */
 
 		props: {
@@ -67,7 +66,7 @@
 			type: {
 				type: String,
 				default: 'filter'
-			}
+			},
 		},
 		created() {
 			this.init()
@@ -131,7 +130,6 @@
 				const fIdx = this.filter.findIndex(el => el == key)
 				if (sIdx >= 0) this.filter.splice(fIdx, 1)
 				else this.filter.push(key)
-				this.$emit('change', this.selectFilterArr)
 			},
 
 			// 单选
@@ -174,23 +172,7 @@
 						drop_item_key: item.drop_item_key
 					})
 				}
-				this.$emit('change', this.selectRadioArr)
 			},
-
-			// 移除 guid 和自定义属性 drop_item_identity 再返回
-			removeCustomAttributes(filed) {
-				// 由于 drop_item_key 和 drop_item_identity 是组件渲染是自动生成的，不需要反馈回去，所以需要移除
-				const arr = JSON.parse(JSON.stringify(this[filed]))
-				arr.forEach(el => {
-					delete el.drop_item_key
-					delete el.drop_item_identity
-					el[this.childName] && el[this.childName].forEach(ele => {
-						delete ele.drop_item_key
-						delete el.checked
-					})
-				})
-				return arr
-			}
 		}
 	}
 </script>
