@@ -1662,7 +1662,7 @@ export default [{
 	},
 	{
 		"name": '筛选',
-		"type": 'filter',
+		"type": 'radio',
 		"submenu": [{
 				"name": "优惠",
 				"submenu": [{

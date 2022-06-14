@@ -18,7 +18,7 @@
 			<block v-for="(item,index) in menuData" :key="index">
 				<view class="sub-menu-class" :class="{'show':current==index,'hide':!pageState[index]}">
 					<block v-if="(item.type=='hierarchy'||item.type=='hierarchy-column')&& item[childName].length>0">
-						<drop-item-menu :item="item" :firstScrollInto="firstScrollInto"
+						<drop-item-menu :item="item" :columns="`columns${index+1}`" :firstScrollInto="firstScrollInto"
 							:secondScrollInto="secondScrollInto" :thirdScrollInto="thirdScrollInto"
 							:childName="childName" :fileds="fileds" @first="first" @second="second" @third="third"
 							ref="itemMenu" style="width: 100%;">
@@ -79,7 +79,7 @@
 			},
 			autoStow: {
 				type: Boolean,
-				default: false
+				default: true
 			},
 			resetStow: {
 				type: Boolean,
@@ -156,10 +156,10 @@
 				})
 			},
 
-			//写入结果，筛选
+			//写入结果，合并
 			confirmFilter() {
-				const data = [...this.filter, ...this.radio, ...this.columns]
-				console.log(data)
+				const data = {}
+				console.log(this.columns);
 				this.$emit('confirm', data)
 				this.closeMeun(true)
 			},
@@ -282,24 +282,26 @@
 			},
 
 			first(obj) {
-				this.columns = []
-				if (obj.item.drop_item_key) this.columns.push(obj.item)
-				else this.columns.splice(0, 1)
+				this.columns = {}
+				this.columns[obj.col] = this.columns[obj.col] ? this.columns[obj.col] : [],
+					console.log(this.columns);
+				if (obj.item.drop_item_key) this.columns[obj.col].push(obj.item)
+				else this.columns[obj.col].splice(0, 1)
 				if (this.autoStow && obj.show) {
 					this.confirmFilter()
 				}
 			},
 			second(obj) {
-				if (this.columns[2]) this.columns.splice(2, 1)
-				if (obj.item.drop_item_key) this.columns.splice(1, 1, obj.item)
-				else this.columns.splice(1, 1)
+				if (this.columns[obj.col][2]) this.columns[obj.col].splice(2, 1)
+				if (obj.item.drop_item_key) this.columns[obj.col].splice(1, 1, obj.item)
+				else this.columns[obj.col].splice(1, 1)
 				if (this.autoStow && obj.show) {
 					this.confirmFilter()
 				}
 			},
 			third(obj) {
-				if (obj.item.drop_item_key) this.columns.splice(2, 1, obj.item)
-				else this.columns.splice(2, 1)
+				if (obj.item.drop_item_key) this.columns[obj.col].splice(2, 1, obj.item)
+				else this.columns[obj.col].splice(2, 1)
 				if (this.autoStow && obj.show) {
 					this.confirmFilter()
 				}

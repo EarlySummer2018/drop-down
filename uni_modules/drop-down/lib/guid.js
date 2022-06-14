@@ -5,7 +5,7 @@ export const guid = () => {
 		return v.toString(16);
 	});
 }
-guid() // "a1ca0f7b-51bd-4bf3-a5d5-6a74f6adc1c7"
+// guid() // "a1ca0f7b-51bd-4bf3-a5d5-6a74f6adc1c7"
 
 export const guid2 = () => {
 	function S4() {
@@ -13,4 +13,4 @@ export const guid2 = () => {
 	}
 	return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
 }
-guid2() // "748eea29-f842-4af9-a552-e1e1aa3ed979"
+// guid2() // "748eea29-f842-4af9-a552-e1e1aa3ed979"

@@ -115,6 +115,10 @@
 				type: String,
 				default: 'submenu'
 			},
+			columns: {
+				type: String,
+				default: 'columns1'
+			}
 		},
 		data() {
 			return {
@@ -159,7 +163,8 @@
 				const show = data[this.childName].length == 0 ? true : false
 				this.$emit('first', {
 					item,
-					show
+					show,
+					col: this.columns
 				})
 			},
 			selectSec(data) {
@@ -168,7 +173,8 @@
 				const show = data[this.childName].length == 0 ? true : false
 				this.$emit('second', {
 					item,
-					show
+					show,
+					col: this.columns
 				})
 			},
 			selectSec2(data) {
@@ -176,7 +182,8 @@
 				const show = data[this.childName].length == 0 ? true : false
 				this.$emit('third', {
 					item,
-					show
+					show,
+					col: this.columns
 				})
 			},
 
