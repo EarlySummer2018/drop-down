@@ -359,15 +359,15 @@
 
 	.nav {
 		width: 100%;
-		height: 88upx;
-		border-bottom: solid 2upx #eee;
+		height: 88rpx;
+		border-bottom: solid 2rpx #eee;
 		z-index: 12;
 		background-color: #ffffff;
 		flex-direction: row;
 
 		.first-menu {
 			width: 100%;
-			font-size: 26upx;
+			font-size: 26rpx;
 			color: #757575;
 			flex-direction: row;
 			align-items: center;
@@ -394,7 +394,7 @@
 
 			.name {
 				position: relative;
-				height: 40upx;
+				height: 40rpx;
 				text-align: center;
 				text-overflow: clip;
 
@@ -405,8 +405,8 @@
 					position: absolute;
 					right: 0;
 					top: 50%;
-					width: 10upx;
-					height: 5upx;
+					width: 10rpx;
+					height: 5rpx;
 					background-color: #757575;
 					transition: transform 0.3s linear;
 				}
@@ -427,10 +427,10 @@
 		position: absolute;
 		left: 0;
 		transform: translate3d(0, - 100%, 0);
-		max-height: 690upx;
+		max-height: 690rpx;
 		background-color: #ffffff;
 		z-index: 11;
-		box-shadow: 0 10upx 10upx rgba(0, 0, 0, .1);
+		box-shadow: 0 10rpx 10rpx rgba(0, 0, 0, .1);
 		overflow: hidden;
 		align-items: center;
 		flex-direction: column;
@@ -441,21 +441,21 @@
 		}
 
 		&.show {
-			transform: translate3d(0, calc(88upx + 1upx), 0);
+			transform: translate3d(0, calc(88rpx + 1rpx), 0);
 		}
 
 		.btn-box {
 			flex-shrink: 0;
 			width: 698rpx;
-			height: 120upx;
+			height: 120rpx;
 			flex-direction: row !important;
 			align-items: center;
 			justify-content: space-between;
 
 			>view {
 				width: 320rpx;
-				height: 80upx;
-				border-radius: 80upx;
+				height: 80rpx;
+				border-radius: 80rpx;
 				border: solid 1rpx $uni-color-primary;
 				align-items: center;
 				justify-content: center;
@@ -474,7 +474,7 @@
 
 	.filter {
 		width: 100%;
-		height: 600upx;
+		height: 600rpx;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -482,12 +482,12 @@
 
 		.menu-box {
 			width: 698rpx;
-			height: calc(690upx - 120upx);
+			height: calc(690rpx - 120rpx);
 			flex-shrink: 1;
 
 			.box {
 				width: 100%;
-				padding-top: 32upx;
+				padding-top: 32rpx;
 				flex-direction: column;
 			}
 		}

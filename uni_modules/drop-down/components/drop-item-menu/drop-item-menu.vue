@@ -220,7 +220,7 @@
 
 	.sub-menu-list {
 		width: 100%;
-		height: calc(690upx - 150upx);
+		height: calc(690rpx - 150rpx);
 		flex-direction: column;
 
 		.sub-menu {

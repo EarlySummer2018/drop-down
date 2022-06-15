@@ -189,7 +189,7 @@
 
 		.title {
 			width: 100%;
-			font-size: 26upx;
+			font-size: 26rpx;
 			color: #888;
 		}
 
@@ -204,13 +204,13 @@
 			}
 
 			>view {
-				width: calc((698upx - 30upx * 3) / 4 - 1upx * 2);
-				height: 60upx;
+				width: calc((698rpx - 30rpx * 3) / 4 - 1rpx * 2);
+				height: 60rpx;
 				border: solid 1rpx #adadad;
-				border-radius: 4upx;
-				margin-right: 20upx;
-				margin-top: 16upx;
-				font-size: 24upx;
+				border-radius: 4rpx;
+				margin-right: 20rpx;
+				margin-top: 16rpx;
+				font-size: 24rpx;
 				flex-direction: row;
 				justify-content: center;
 				align-items: center;
@@ -219,12 +219,12 @@
 
 		.menu-box {
 			width: 698rpx;
-			height: calc(690upx - 120upx);
+			height: calc(690rpx - 120rpx);
 			flex-shrink: 1;
 
 			.box {
 				width: 100%;
-				padding-top: 32upx;
+				padding-top: 32rpx;
 				flex-direction: column;
 			}
 		}
