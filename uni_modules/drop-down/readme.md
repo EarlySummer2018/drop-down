@@ -12,7 +12,6 @@ drop-down --下拉筛选菜单，多平台测试通过，不支持的平台暂�
 |isChild|返回结果时是否一并返回子菜单|Boolean|否|false|
 |autoStow|选择完成是否自动收起菜单，仅列表模式有效|Boolean|否|true|
 |resetStow|重置参数后自动收起菜单|Boolean|否|false|
-|areaClass|textarea类名|String|否|空|
 |confirm|菜单收起时返回赛选结果|Function|否|[]|
 
 ## filterData 格式和默认值设置
@@ -56,11 +55,9 @@ const filterData = [{
 		},
 		methods: {
 			confirm(e) {
+				// 返回值为一个数组
 				console.log('eeee', e);
 			},
-			reset(val) {
-				this.defaultVal = val
-			}
 		},
 	}
 </script>
