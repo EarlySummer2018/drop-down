@@ -141,18 +141,17 @@
 				this.setKey(this.newItem)
 			},
 			setKey(item) {
-				if (item[this.childName]) {
-					if (item[this.childName].length) {
-						item[this.childName].forEach(el => {
-							el.drop_item_key = guid()
-							el.checked = el.checked ? el.checked : false
-							if (el.checked) {
-								this[this.attr[el.drop_item_identity - 1]] = el.drop_item_key
-								this.selectArr.push(el)
-							}
-							this.setKey(el)
-						})
-					}
+				let child = item[this.childName]
+				if (child && child.length) {
+					child.forEach(el => {
+						el.drop_item_key = guid()
+						el.checked = el.checked ? el.checked : false
+						if (el.checked) {
+							this[this.attr[el.drop_item_identity - 1]] = el.drop_item_key
+							this.selectArr.push(el)
+						}
+						this.setKey(el)
+					})
 				} else {
 					item[this.childName] = []
 					this.deepIndex = -1
@@ -172,37 +171,37 @@
 			selectSec2(data) {
 				this.result(data, 'sec2_current')
 				this.isExist(data, 2)
-				
+
 			},
 
 			result(data, filed) {
 				if (this[filed] !== data.drop_item_key) {
 					this[filed] = data.drop_item_key
 				} else {
-					if(this.autoStow) return
+					if (this.autoStow) return
 					this[filed] = -1
 				}
 			},
-			
+
 			// 判断是否已经选择,如果已选中就剔除,否则选中
 			isExist(item, type) {
 				const current = this.selectArr[type]
-				if(current&&current.drop_item_key===item.drop_item_key) {
-					if(!this.autoStow) {
+				if (current && current.drop_item_key === item.drop_item_key) {
+					if (!this.autoStow) {
 						item.checked = false
-						if(type===0) this.selectArr = []
-						else this.selectArr.splice(type, this.selectArr.length-1)
+						if (type === 0) this.selectArr = []
+						else this.selectArr.splice(type, this.selectArr.length - 1)
 					}
-				}else if (current&&current.drop_item_key!==item.drop_item_key){
-					this.selectArr.splice(type+1, this.selectArr.length-1)
-					this.selectArr.fill(item,type,type+1)
+				} else if (current && current.drop_item_key !== item.drop_item_key) {
+					this.selectArr.splice(type + 1, this.selectArr.length - 1)
+					this.selectArr.fill(item, type, type + 1)
 					this.selectArr[type].checked = false
 					item.checked = true
-				}else {
+				} else {
 					this.selectArr.push(item)
 					item.checked = true
 				}
-				const show = item[this.childName].length == 0 ? true : false
+				const show = (!item[this.childName] || !item[this.childName].length) ? true : false
 				this.$emit("close", show)
 			}
 		}

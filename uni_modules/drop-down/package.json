@@ -1,10 +1,14 @@
 {
   "id": "drop-down",
-  "displayName": "drop-down",
-  "version": "1.0.0",
+  "displayName": "drop-down（多平台测试通过）",
+  "version": "1.0.3",
   "description": "drop-down",
   "keywords": [
-    "drop-down"
+    "下拉菜单",
+    "筛选",
+    "fliter",
+    "多选",
+    "单选"
 ],
   "repository": "https://github.com/EarlySummer2018/drop-down.git",
   "engines": {

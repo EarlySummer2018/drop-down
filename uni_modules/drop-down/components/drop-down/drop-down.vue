@@ -20,8 +20,8 @@
 					<block v-if="(item.type=='hierarchy'||item.type=='hierarchy-column')&& item[childName].length>0">
 						<drop-item-menu :item="item" :firstScrollInto="firstScrollInto"
 							:secondScrollInto="secondScrollInto" :thirdScrollInto="thirdScrollInto"
-							:childName="childName" :fileds="fileds"
-							ref="itemMenu" style="width: 100%;" @close="emitColse">
+							:childName="childName" :fileds="fileds" ref="itemMenu" style="width: 100%;"
+							@close="emitColse">
 						</drop-item-menu>
 					</block>
 					<!-- 多选筛选 -->
@@ -35,8 +35,8 @@
 					<!-- 单选筛选 -->
 					<block v-if="item.type=='radio'">
 						<view class="filter">
-							<drop-item :item="item" type="radio" :childName="childName"
-								:fileds="fileds" ref="dropItem"></drop-item>
+							<drop-item :item="item" type="radio" :childName="childName" :fileds="fileds" ref="dropItem">
+							</drop-item>
 						</view>
 					</block>
 					<view class="btn-box" v-if="!autoStow||item.type=='filter'||item.type=='radio'">
@@ -107,7 +107,7 @@
 				// 单选/多选
 				filter: [],
 				radio: [],
-				
+
 				result: [],
 			}
 		},
@@ -169,6 +169,7 @@
 			//重置结果和ui，筛选
 			resetFilter(page_index) {
 				const components1 = this.$refs.itemMenu
+				if (!components1 || !components1.length) return
 				components1.forEach(component => {
 					component.current = -1
 					component.sec_current = -1
@@ -176,7 +177,8 @@
 					component.selectArr = []
 				})
 				const components2 = this.$refs.dropItem
-				components2.forEach(component=>{
+				if (!components2 || !components2.length) return
+				components2.forEach(component => {
 					component.selectFilterArr = []
 					component.selectRadioArr = []
 					component.filter = []
@@ -185,19 +187,21 @@
 				if (this.resetStow) this.closeMeun(this.resetStow)
 				this.confirmFilter()
 			},
-			
+
 			// 取类型为 filter 或 radio 的选中值
 			getFilterOrRadioValue() {
 				const components = this.$refs.dropItem
-				components.forEach(component=>{
+				if (!components || !components.length) return
+				components.forEach(component => {
 					this.result.push(...component.selectFilterArr, ...component.selectRadioArr)
 				})
 			},
-			
+
 			// 取类型为 列表筛选 的选中值
 			getListValue() {
 				const components = this.$refs.itemMenu
-				components.forEach(component=>{
+				if (!components || !components.length) return
+				components.forEach(component => {
 					this.result.push(...component.selectArr)
 				})
 			},
@@ -293,18 +297,18 @@
 			closeMeun(show) {
 				if (show) this.hideMenu(true);
 			},
-			
+
 			// 移除组件自定义属性
 			removeCustomAttributes(data) {
-				if(!data || !data.length) return []
+				if (!data || !data.length) return []
 				data.forEach(el => {
-					delete el.drop_item_key
-					delete el.pKey
-					delete el.drop_item_identity
-					delete el.parent_type
-					!this.isChild && delete el[this.childName]
-					if(this.isChild && el[this.childName]) {
-						 this.removeCustomAttributes(el[this.childName])
+					delete el.drop_item_key;
+					delete el.pKey;
+					delete el.drop_item_identity;
+					delete el.parent_type;
+					!this.isChild && delete el[this.childName];
+					if (this.isChild && el[this.childName]) {
+						this.removeCustomAttributes(el[this.childName])
 					}
 				})
 				return data

@@ -91,23 +91,22 @@
 				this.setKey(this.newItem)
 			},
 			setKey(item, pKey = '') {
-				if (item[this.childName]) {
-					if (item[this.childName].length) {
-						item[this.childName].forEach(el => {
-							el.drop_item_key = guid()
-							el.checked = el.checked ? el.checked : false
-							el.parent_type = this.type
-							if (el.checked) {
-								if (el.parent_type === 'filter') {
-									this.selectFilterArr.push(el)
-									this.filter.push(el.drop_item_key)
-								} else if (el.parent_type === 'radio') {
-									this.selectRadioLabel(el, pKey)
-								}
+				let child = item[this.childName]
+				if (child && child.length) {
+					child.forEach(el => {
+						el.drop_item_key = guid()
+						el.checked = el.checked ? el.checked : false
+						el.parent_type = this.type
+						if (el.checked) {
+							if (el.parent_type === 'filter') {
+								this.selectFilterArr.push(el)
+								this.filter.push(el.drop_item_key)
+							} else if (el.parent_type === 'radio') {
+								this.selectRadioLabel(el, pKey)
 							}
-							this.setKey(el, el.drop_item_key)
-						})
-					}
+						}
+						this.setKey(el, el.drop_item_key)
+					})
 				} else {
 					item[this.childName] = []
 					this.deepIndex = -1
