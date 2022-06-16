@@ -111,6 +111,10 @@
 				type: [Number, null],
 				default: 0
 			},
+			currentIndex: {
+				type: Number,
+				default: 0
+			},
 			childName: {
 				type: String,
 				default: 'submenu'
@@ -139,6 +143,8 @@
 				this.newItem = JSON.parse(JSON.stringify(this.item))
 				this.newItem.drop_item_key = guid()
 				this.setKey(this.newItem)
+				if (!this.selectArr || !this.selectArr.length) return
+				this.$emit('change', this.selectArr)
 			},
 			setKey(item) {
 				let child = item[this.childName]
@@ -171,7 +177,6 @@
 			selectSec2(data) {
 				this.result(data, 'sec2_current')
 				this.isExist(data, 2)
-
 			},
 
 			result(data, filed) {
@@ -203,6 +208,7 @@
 				}
 				const show = (!item[this.childName] || !item[this.childName].length) ? true : false
 				this.$emit("close", show)
+				this.$emit('change', this.selectArr)
 			}
 		}
 	}

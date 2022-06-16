@@ -9,7 +9,8 @@
 			<view class="nav">
 				<block v-for="(item,index) in menu" :key="index">
 					<view class="first-menu" :class="{'on':current==index}" @click="togglePage(index)">
-						<text class="name">{{item[fileds]}}</text>
+						<text class="txt" :class="{'checked-color': checkedColor(item)}">{{showTitle(item)}}</text>
+						<text class="name"></text>
 					</view>
 				</block>
 			</view>
@@ -18,10 +19,10 @@
 			<block v-for="(item,index) in menuData" :key="index">
 				<view class="sub-menu-class" :class="{'show':current==index,'hide':!pageState[index]}">
 					<block v-if="(item.type=='hierarchy'||item.type=='hierarchy-column')&& item[childName].length>0">
-						<drop-item-menu :item="item" :firstScrollInto="firstScrollInto"
+						<drop-item-menu :item="item" :currentIndex="index" :firstScrollInto="firstScrollInto"
 							:secondScrollInto="secondScrollInto" :thirdScrollInto="thirdScrollInto"
 							:childName="childName" :fileds="fileds" ref="itemMenu" style="width: 100%;"
-							@close="emitColse">
+							@close="emitColse" @change="changeMenuTitle($event, index)">
 						</drop-item-menu>
 					</block>
 					<!-- 多选筛选 -->
@@ -125,6 +126,19 @@
 				deep: true
 			},
 		},
+		computed: {
+			showTitle() {
+				return (item) => {
+					return (item.checkedName && item.checkedName.length) ? item.checkedName.join('/') : item[this
+						.fileds]
+				}
+			},
+			checkedColor() {
+				return (item) => {
+					return item.checkedName && item.checkedName.length
+				}
+			}
+		},
 		created() {
 			this.init();
 			this.addIdentity(this.menuData, 0)
@@ -138,7 +152,8 @@
 						[this.fileds]: tmpitem[this.fileds] || (tmpitem.type == "filter" ? "筛选" : tmpitem[this
 							.childName] ? tmpitem[
 							this.childName][0][this.fileds] : '筛选'),
-						type: tmpitem.type
+						type: tmpitem.type,
+						checkedName: []
 					});
 					this.pageState.push(false);
 				}
@@ -294,6 +309,16 @@
 					this.confirmFilter()
 				}
 			},
+
+			// 点击改变头部标题
+			changeMenuTitle(data, index) {
+				if (!data || !data.length) return
+				this.menu[index].checkedName = []
+				data.forEach((el) => {
+					this.menu[index].checkedName.push(el.name)
+				})
+				console.log(this.menu);
+			},
 			closeMeun(show) {
 				if (show) this.hideMenu(true);
 			},
@@ -418,6 +443,17 @@
 				&::after {
 					transform: translate(210%, -50%) rotateZ(40deg);
 				}
+			}
+
+			.txt {
+				display: inline-block;
+				max-width: 80rpx;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+
+			.checked-color {
+				color: $uni-color-primary;
 			}
 		}
 	}
