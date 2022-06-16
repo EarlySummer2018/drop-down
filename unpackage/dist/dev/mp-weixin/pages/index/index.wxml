@@ -1,1 +1,1 @@
-<view class="index data-v-57280228"><drop-down vue-id="8dd740cc-1" filterData="{{filterData}}" data-event-opts="{{[['^confirm',[['confirm']]]]}}" bind:confirm="__e" class="data-v-57280228" bind:__l="__l"></drop-down></view>
+<view class="index data-v-57280228"><drop-down vue-id="8dd740cc-1" filterData="{{filterData}}" defaultVal="{{defaultVal}}" data-event-opts="{{[['^confirm',[['confirm']]],['^reset',[['reset']]]]}}" bind:confirm="__e" bind:reset="__e" class="data-v-57280228" bind:__l="__l"></drop-down></view>

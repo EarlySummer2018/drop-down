@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["uni_modules/drop-down/components/drop-item-menu/drop-item-menu"],{
 
 /***/ 26:
-/*!******************************************************************************************************!*\
-  !*** D:/small/MF-Gitee/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue ***!
-  \******************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** E:/small/plugins/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -42,9 +42,9 @@ component.options.__file = "uni_modules/drop-down/components/drop-item-menu/drop
 /***/ }),
 
 /***/ 27:
-/*!*************************************************************************************************************************************************!*\
-  !*** D:/small/MF-Gitee/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=template&id=719e79ec&scoped=true& ***!
-  \*************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************!*\
+  !*** E:/small/plugins/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=template&id=719e79ec&scoped=true& ***!
+  \************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64,9 +64,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 28:
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!D:/small/MF-Gitee/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=template&id=719e79ec&scoped=true& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!E:/small/plugins/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=template&id=719e79ec&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -91,9 +91,9 @@ render._withStripped = true
 /***/ }),
 
 /***/ 29:
-/*!*******************************************************************************************************************************!*\
-  !*** D:/small/MF-Gitee/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************/
+/*!******************************************************************************************************************************!*\
+  !*** E:/small/plugins/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -107,9 +107,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 30:
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!D:/small/MF-Gitee/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!E:/small/plugins/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -282,32 +282,57 @@ var _default2 = { /**
                    * @property {Function() <Object:{show,item}> {}}			first  					返回选中的一级菜单对象，返回值为show和item，show 为否有下级菜单，item 为当前选中项
                    * @property {Function() <Object:{show,item}> {}}			second  				返回选中的二级菜单对象，返回值为show和item，show 为否有下级菜单，item 为当前选中项
                    * @property {Function() <Object:{show,item}> {}}			third  					返回选中的三级菜单对象，返回值为show和item，show 为否有下级菜单，item 为当前选中项
-                   * */props: { item: { type: Object, default: function _default() {return {};} }, firstScrollInto: { type: [Number, null], default: 0 }, secondScrollInto: { type: [Number, null], default: 0 }, thirdScrollInto: { type: [Number, null], default: 0 }, childName: { type: String, default: 'submenu' } }, data: function data() {return { current: -1, sec_current: -1, sec2_current: -1, newItem: [] };}, created: function created() {this.init();}, methods: { init: function init() {this.newItem = JSON.parse(JSON.stringify(this.item));this.newItem.key = (0, _guid.guid)();this.setKey(this.newItem);}, setKey: function setKey(item) {var _this = this;if (item[this.childName]) {if (item[this.childName].length) {item[this.childName].forEach(function (el) {el.key = (0, _guid.guid)();_this.setKey(el);});}} else {item[this.childName] = [];}}, selectFirst: function selectFirst(data) {var item = this.result(data, 'current');this.sec_current = -1;this.sec2_current = -1;var show = data[this.childName].length == 0 ? true : false;this.$emit('first', { item: item, show: show });}, selectSec: function selectSec(data) {var item = this.result(data, 'sec_current');this.sec2_current = -1;var show = data[this.childName].length == 0 ? true : false;this.$emit('second', { item: item, show: show });}, selectSec2: function selectSec2(data) {var item = this.result(data, 'sec2_current');
-      var show = data[this.childName].length == 0 ? true : false;
-      this.$emit('third', {
-        item: item,
-        show: show });
-
+                   * */props: { item: { type: Object, default: function _default() {return {};} }, firstScrollInto: { type: [Number, null], default: 0 }, secondScrollInto: { type: [Number, null], default: 0 }, thirdScrollInto: { type: [Number, null], default: 0 }, currentIndex: { type: Number, default: 0 }, childName: { type: String, default: 'submenu' }, autoStow: { type: Boolean, default: true } }, data: function data() {return { current: -1, sec_current: -1, sec2_current: -1, newItem: [], deepIndex: 0, attr: ['current', 'sec_current', 'sec2_current'], selectArr: [] };}, created: function created() {this.init();}, methods: { init: function init() {this.newItem = JSON.parse(JSON.stringify(this.item));this.newItem.drop_item_key = (0, _guid.guid)();this.setKey(this.newItem);if (!this.selectArr || !this.selectArr.length) return;this.$emit('change', this.selectArr);}, setKey: function setKey(item) {var _this = this;var child = item[this.childName];if (child && child.length) {child.forEach(function (el) {el.drop_item_key = (0, _guid.guid)();el.checked = el.checked ? el.checked : false;if (el.checked) {_this[_this.attr[el.drop_item_identity - 1]] = el.drop_item_key;_this.selectArr.push(el);}_this.setKey(el);});} else {item[this.childName] = [];this.deepIndex = -1;}}, selectFirst: function selectFirst(data) {this.result(data, 'current');this.sec_current = -1;this.sec2_current = -1;
+      this.isExist(data, 0);
+    },
+    selectSec: function selectSec(data) {
+      this.result(data, 'sec_current');
+      this.sec2_current = -1;
+      this.isExist(data, 1);
+    },
+    selectSec2: function selectSec2(data) {
+      this.result(data, 'sec2_current');
+      this.isExist(data, 2);
     },
 
     result: function result(data, filed) {
-      var item = {};
-      if (this[filed] !== data.key) {
-        this[filed] = data.key;
-        item = data;
+      if (this[filed] !== data.drop_item_key) {
+        this[filed] = data.drop_item_key;
       } else {
+        if (this.autoStow) return;
         this[filed] = -1;
-        item = {};
       }
-      return item;
+    },
+
+    // 判断是否已经选择,如果已选中就剔除,否则选中
+    isExist: function isExist(item, type) {
+      var current = this.selectArr[type];
+      if (current && current.drop_item_key === item.drop_item_key) {
+        if (!this.autoStow) {
+          item.checked = false;
+          if (type === 0) this.selectArr = [];else
+          this.selectArr.splice(type, this.selectArr.length - 1);
+        }
+      } else if (current && current.drop_item_key !== item.drop_item_key) {
+        this.selectArr.splice(type + 1, this.selectArr.length - 1);
+        this.selectArr.fill(item, type, type + 1);
+        this.selectArr[type].checked = false;
+        item.checked = true;
+      } else {
+        this.selectArr.push(item);
+        item.checked = true;
+      }
+      var show = !item[this.childName] || !item[this.childName].length ? true : false;
+      this.$emit("close", show);
+      this.$emit('change', this.selectArr);
     } } };exports.default = _default2;
 
 /***/ }),
 
 /***/ 32:
-/*!****************************************************************************************************************************************************************!*\
-  !*** D:/small/MF-Gitee/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=style&index=0&id=719e79ec&lang=scss&scoped=true& ***!
-  \****************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************!*\
+  !*** E:/small/plugins/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=style&index=0&id=719e79ec&lang=scss&scoped=true& ***!
+  \***************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -321,9 +346,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ 33:
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!D:/small/MF-Gitee/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=style&index=0&id=719e79ec&lang=scss&scoped=true& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!E:/small/plugins/drop-down/uni_modules/drop-down/components/drop-item-menu/drop-item-menu.vue?vue&type=style&index=0&id=719e79ec&lang=scss&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

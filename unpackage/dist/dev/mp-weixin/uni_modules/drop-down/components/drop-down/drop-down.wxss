@@ -86,8 +86,8 @@ view.data-v-569b936c {
 }
 .nav .first-menu.on .name.data-v-569b936c::after {
   background-color: #007aff;
-  -webkit-transform: translate(230%, -50%) rotateZ(-40deg);
-          transform: translate(230%, -50%) rotateZ(-40deg);
+  -webkit-transform: translate(210%, -50%) rotateZ(-40deg);
+          transform: translate(210%, -50%) rotateZ(-40deg);
 }
 .nav .first-menu .name.data-v-569b936c {
   position: relative;
@@ -112,8 +112,17 @@ view.data-v-569b936c {
           transform: translate(150%, -50%) rotateZ(-40deg);
 }
 .nav .first-menu .name.data-v-569b936c::after {
-  -webkit-transform: translate(230%, -50%) rotateZ(40deg);
-          transform: translate(230%, -50%) rotateZ(40deg);
+  -webkit-transform: translate(210%, -50%) rotateZ(40deg);
+          transform: translate(210%, -50%) rotateZ(40deg);
+}
+.nav .first-menu .txt.data-v-569b936c {
+  display: inline-block;
+  max-width: 80rpx;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.nav .first-menu .checked-color.data-v-569b936c {
+  color: #007aff;
 }
 .sub-menu-class.data-v-569b936c {
   width: 100%;

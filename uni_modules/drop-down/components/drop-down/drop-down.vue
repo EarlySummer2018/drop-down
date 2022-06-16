@@ -15,9 +15,11 @@
 				</block>
 			</view>
 			<!-- 遮罩层 -->
-			<view class="mask" :class="{'show':isShowMask,'hide':maskVisibility!=true}" @click="hideMenu(false)"></view>
+			<view class="mask" v-if="overlay" :class="{'show':isShowMask,'hide':maskVisibility!=true}"
+				@click="hideMenu(true, 'mask')"></view>
 			<block v-for="(item,index) in menuData" :key="index">
-				<view class="sub-menu-class" :class="{'show':current==index,'hide':!pageState[index]}">
+				<view class="sub-menu-class"
+					:class="{'show':current==index,'hide':!pageState[index], 'show-shadow':shadow}">
 					<block v-if="(item.type=='hierarchy'||item.type=='hierarchy-column')&& item[childName].length>0">
 						<drop-item-menu :item="item" :currentIndex="index" :firstScrollInto="firstScrollInto"
 							:secondScrollInto="secondScrollInto" :thirdScrollInto="thirdScrollInto"
@@ -59,6 +61,9 @@
 		 * @property {Boolean}		  				isChild				返回值是否包含子菜单 （默认 false，可选 true）
 		 * @property {Boolean}		  				autoStow			菜单类型为 hierarchy 或 hierarchy-column 时选择完成之后是否自动收起菜单并返回选中值，默认 true，选择所有子																		  菜单后再收起，如果有多级时，希望选择一级或二级菜单时就收起，需要设置为 false，点击确定收起
 		 * @property {Boolean}						resetStow  			重置是否收起，默认 false，可选 true
+		 * @property {Boolean}						overlay  			是否显示遮罩，默认 true，可选 false
+		 * @property {Boolean}						closeOnClickOverlay 点击遮罩是否收起菜单，默认 true，可选 false
+		 * @property {Boolean}						shadow  			是否显示菜单下阴影，默认 true，可选 false
 		 * @property {Function() <array> {}}		confirm  			返回所有选中的对象
 		 * */
 		props: {
@@ -85,6 +90,18 @@
 			resetStow: {
 				type: Boolean,
 				default: false
+			},
+			overlay: {
+				type: Boolean,
+				default: true
+			},
+			closeOnClickOverlay: {
+				type: Boolean,
+				default: true
+			},
+			shadow: {
+				type: Boolean,
+				default: true
 			}
 		},
 		data() {
@@ -179,7 +196,7 @@
 				this.getListValue()
 				this.getFilterOrRadioValue()
 				this.formatResult()
-				this.closeMeun(true)
+				this.hideMenu(false)
 			},
 			//重置结果和ui，筛选
 			resetFilter(page_index) {
@@ -199,7 +216,7 @@
 					component.filter = []
 					component.radio = []
 				})
-				if (this.resetStow) this.closeMeun(this.resetStow)
+				if (this.resetStow) this.hideMenu(true)
 				this.confirmFilter()
 			},
 
@@ -223,15 +240,13 @@
 
 			//菜单开关
 			togglePage(index) {
-				if (this.isToggleing) {
-					return;
-				}
+				if (this.isToggleing) return;
 				this.isToggleing = true;
 				setTimeout(() => {
 					this.isToggleing = false;
 				}, 150)
 				if (index == this.current) {
-					this.hideMenu();
+					this.hideMenu(true);
 				} else {
 					this.showMenu(index)
 				}
@@ -239,10 +254,12 @@
 
 
 			// 隐藏菜单
-			hideMenu(isTriggerConfirm) {
+			hideMenu(hideReturn = false, type) {
+				if (!this.closeOnClickOverlay && type === 'mask') return
 				this.hideMenuLayer(true);
 				this.hideMaskLayer();
 				this.current = -1;
+				if (hideReturn) this.confirmFilter()
 			},
 
 			// 显示菜单
@@ -317,10 +334,6 @@
 				data.forEach((el) => {
 					this.menu[index].checkedName.push(el.name)
 				})
-				console.log(this.menu);
-			},
-			closeMeun(show) {
-				if (show) this.hideMenu(true);
 			},
 
 			// 移除组件自定义属性
@@ -458,6 +471,10 @@
 		}
 	}
 
+	.show-shadow {
+		box-shadow: 0 4rpx 20rpx rgba(#ccc, 1);
+	}
+
 	.sub-menu-class {
 		width: 100%;
 		position: absolute;
@@ -466,7 +483,7 @@
 		max-height: 690rpx;
 		background-color: #ffffff;
 		z-index: 11;
-		box-shadow: 0 10rpx 10rpx rgba(0, 0, 0, .1);
+
 		overflow: hidden;
 		align-items: center;
 		flex-direction: column;

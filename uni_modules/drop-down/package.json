@@ -1,7 +1,7 @@
 {
   "id": "drop-down",
   "displayName": "drop-down（多平台测试通过）",
-  "version": "1.0.3.3",
+  "version": "1.0.4",
   "description": "drop-down 下拉筛选菜单，多平台测试通过",
   "keywords": [
     "下拉菜单",
