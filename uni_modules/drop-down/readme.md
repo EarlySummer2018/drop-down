@@ -56,17 +56,17 @@ const filterData = [{
 ## 参数
 可选参数属性列表
 
-|参数名|说明|类型|是否必填|默认值|可选值|
-|----|----|----|----|----|----|
-|filterData|筛选列表|Array|是|[]|-|
-|childName|子级菜单字段名|String|否|submenu|-|
-|fileds|显示字段|String|否|name|-|
-|isChild|返回结果时是否一并返回子菜单|Boolean|否|false|true|
-|autoStow|选择完成是否自动收起菜单，仅列表模式有效|Boolean|否|true|false|
-|resetStow|重置参数后自动收起菜单|Boolean|否|false|true|
-|overlay|是否显示遮罩|Boolean|否|true|false|
-|closeOnClickOverlay|重置参数后自动收起菜单|Boolean|否|true|false|
-|shadow|是否显示菜单下阴影|Boolean|否|true|false|
+|参数名				|说明										|类型	|是否必填	|默认值	|可选值	|
+|----				|----										|----	|----		|----	|----	|
+|filterData			|筛选列表									|Array	|是			|[]		|-		|
+|childName			|子级菜单字段名								|String	|否			|submenu|-		|
+|fileds				|显示字段									|String	|否			|name	|-		|
+|isChild			|返回结果时是否一并返回子菜单				|Boolean|否			|false	|true	|
+|autoStow			|选择完成是否自动收起菜单，仅列表模式有效	|Boolean|否			|true	|false	|
+|resetStow			|重置参数后自动收起菜单						|Boolean|否			|false	|true	|
+|overlay			|是否显示遮罩								|Boolean|否			|true	|false	|
+|closeOnClickOverlay|点击遮罩是否收起菜单						|Boolean|否			|true	|false	|
+|shadow				|是否显示菜单下阴影							|Boolean|否			|true	|false	|
 
 
 # Event 事件
