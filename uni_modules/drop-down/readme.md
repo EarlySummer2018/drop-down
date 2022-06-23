@@ -1,7 +1,8 @@
 
 ## drop-down --下拉筛选菜单，多平台测试通过，不支持的平台暂未测试
 
-<a href="https://www.oscs1024.com/project/oscs/EarlySummer2018/drop-down?ref=badge_small" alt="OSCS Status"><img src="https://www.oscs1024.com/platform/badge/EarlySummer2018/drop-down.svg?size=small"/></a>
+
+[![OSCS Status](https://www.oscs1024.com/platform/badge/EarlySummer2018/drop-down.svg?size=small)](https://www.oscs1024.com/project/EarlySummer2018/drop-down?ref=badge_small)
 
 ## filterData 格式和默认值设置
 在 filterData 筛选列表中为需要选中的项添加 checked: true 即可，checked 不存或 checked：false 则不选中
@@ -83,7 +84,7 @@ const filterData = [{
 
 
 ## OSCS
-[![OSCS Status](https://www.oscs1024.com/platform/badge/EarlySummer2018/drop-down.svg?size=small)](https://www.oscs1024.com/project/EarlySummer2018/drop-down?ref=badge_small)
+[![OSCS Status](https://www.oscs1024.com/platform/badge/EarlySummer2018/drop-down.svg?size=large)](https://www.oscs1024.com/project/EarlySummer2018/drop-down?ref=badge_large)
 
 ## 参考
 
