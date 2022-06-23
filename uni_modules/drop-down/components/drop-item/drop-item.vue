@@ -43,7 +43,7 @@
 	export default {
 		/**
 		 * @property {Object}						item			当前项
-		 * @property {Array}						fileds  		显示的字段（默认 ["name", "label"]）
+		 * @property {String}						fileds  		显示的字段（默认 name）
 		 * @property {String}						childName  		子菜单字段（默认 submenu）
 		 * @property {String}						type  			类型	（默认 filter，可选项 radio）
 		 * */

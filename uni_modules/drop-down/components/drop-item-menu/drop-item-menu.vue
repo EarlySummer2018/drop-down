@@ -8,7 +8,7 @@
 				<block v-for="sub in newItem[childName]" :key="sub.drop_item_key">
 					<view class="sub-menu" :class="{'on':current==sub.drop_item_key}" @click="selectFirst(sub)">
 						<view class="menu-name">
-							<text>{{sub.name}}</text>
+							<text>{{sub[fileds]}}</text>
 							<text class="iconfont selected"></text>
 						</view>
 					</view>
@@ -23,7 +23,7 @@
 						<block v-for="sub_second in sub[childName]" :key="sub_second.drop_item_key">
 							<view class="sub-menu" :class="{'on':sec_current==sub_second.drop_item_key}">
 								<view class="menu-name" @tap="selectSec(sub_second)">
-									<text>{{sub_second.name}}</text>
+									<text>{{sub_second[fileds]}}</text>
 									<text class="iconfont selected"></text>
 								</view>
 								<!-- 第三级菜单 -->
@@ -31,7 +31,7 @@
 									v-if="sub[childName].length>0&&sub_second[childName].length>0">
 									<block v-for="sub2 in sub_second[childName]" :key="sub2.drop_item_key">
 										<text :class="{'on':sec2_current==sub2.drop_item_key}"
-											@click="selectSec2(sub2)">{{sub2.name}}</text>
+											@click="selectSec2(sub2)">{{sub2[fileds]}}</text>
 									</block>
 								</view>
 							</view>
@@ -50,7 +50,7 @@
 						<block v-for="sub_second in sub[childName]" :key="sub_second.drop_item_key">
 							<view class="sub-menu" :class="{'on':sec_current==sub_second.drop_item_key}">
 								<view class="menu-name" @click="selectSec(sub_second)">
-									<text>{{sub_second.name}}</text>
+									<text>{{sub_second[fileds]}}</text>
 								</view>
 							</view>
 						</block>
@@ -65,7 +65,7 @@
 							<block v-for="sub2 in sub_second[childName]" :key="sub2.drop_item_key">
 								<view class="sub-menu" :class="{'on':sec2_current==sub2.drop_item_key}">
 									<view class="menu-name" @click="selectSec2(sub2)">
-										<text>{{sub2.name}}</text>
+										<text>{{sub2[fileds]}}</text>
 									</view>
 								</view>
 							</block>
@@ -88,6 +88,7 @@
 		 * @property {Number, null}									secondScrollInto  		滚动区域定位，不需要开发者传值
 		 * @property {Number, null}									thirdScrollInto  		滚动区域定位，不需要开发者传值
 		 * @property {String}										childName				子级菜单名称，默认 submenu
+		 * @property {String}										fileds					子级菜单名称，默认 name
 		 * @property {Function() <Object:{show,item}> {}}			first  					返回选中的一级菜单对象，返回值为show和item，show 为否有下级菜单，item 为当前选中项
 		 * @property {Function() <Object:{show,item}> {}}			second  				返回选中的二级菜单对象，返回值为show和item，show 为否有下级菜单，item 为当前选中项
 		 * @property {Function() <Object:{show,item}> {}}			third  					返回选中的三级菜单对象，返回值为show和item，show 为否有下级菜单，item 为当前选中项
@@ -119,6 +120,10 @@
 				type: String,
 				default: 'submenu'
 			},
+			fileds: {
+				type: String,
+				default: 'name'
+			}
 			autoStow: {
 				type: Boolean,
 				default: true
