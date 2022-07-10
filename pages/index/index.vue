@@ -1,6 +1,10 @@
 <template>
 	<view class="index">
-		<drop-down :filterData="filterData" :defaultVal="defaultVal" @confirm="confirm" @reset="reset"></drop-down>
+		<drop-down :filterData="filterData" @confirm="confirm" @reset="reset">
+			<template #title="{title}">
+				<view>{{showTitle(title)}}</view>
+			</template>
+		</drop-down>
 	</view>
 </template>
 
@@ -10,11 +14,19 @@
 		data() {
 			return {
 				filterData: [],
-				defaultVal: [0, 1, 2, 3]
+				fileds: 'name'
 			};
 		},
 		onLoad() {
 			this.filterData = data;
+		},
+		computed: {
+			showTitle() {
+				return (item) => {
+					return (item.checkedName && item.checkedName.length) ? item.checkedName.join('/') : item[this
+						.fileds]
+				}
+			},
 		},
 		methods: {
 			confirm(e) {
@@ -24,6 +36,7 @@
 				this.defaultVal = val
 			}
 		},
+
 	}
 </script>
 <style lang="scss" scoped>

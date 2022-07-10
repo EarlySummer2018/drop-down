@@ -1,7 +1,7 @@
 {
   "id": "drop-down",
   "displayName": "drop-down（多平台测试通过）",
-  "version": "1.0.4.1",
+  "version": "1.0.4.3",
   "description": "drop-down 下拉筛选菜单，多平台测试通过",
   "keywords": [
     "下拉菜单",
@@ -76,8 +76,7 @@
           "钉钉": "y",
           "快手": "u",
           "飞书": "u",
-          "京东": "u",
-          "小红书": "u"
+        "京东": "u"
         },
         "快应用": {
           "华为": "u",

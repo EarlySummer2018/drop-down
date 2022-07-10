@@ -123,7 +123,7 @@
 			fileds: {
 				type: String,
 				default: 'name'
-			}
+			},
 			autoStow: {
 				type: Boolean,
 				default: true
@@ -197,10 +197,14 @@
 			isExist(item, type) {
 				const current = this.selectArr[type]
 				if (current && current.drop_item_key === item.drop_item_key) {
-					if (!this.autoStow) {
-						item.checked = false
-						if (type === 0) this.selectArr = []
-						else this.selectArr.splice(type, this.selectArr.length - 1)
+					item.checked = false
+					if (type === 0) {
+						this.selectArr = []
+						this.current = -1
+					} else {
+						if (type === 1) this.sec_current = -1
+						else if (type === 2) this.sec2_current = -1
+						this.selectArr.splice(type, this.selectArr.length - 1)
 					}
 				} else if (current && current.drop_item_key !== item.drop_item_key) {
 					this.selectArr.splice(type + 1, this.selectArr.length - 1)

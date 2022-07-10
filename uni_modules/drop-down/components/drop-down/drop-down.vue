@@ -9,7 +9,11 @@
 			<view class="nav">
 				<block v-for="(item,index) in menu" :key="index">
 					<view class="first-menu" :class="{'on':current==index}" @click="togglePage(index)">
-						<text class="txt" :class="{'checked-color': checkedColor(item)}">{{showTitle(item)}}</text>
+						<text class="txt" :class="{'checked-color': checkedColor(item)}">
+							<slot name="title" :title="item">
+								{{showTitle(item)}}
+							</slot>
+						</text>
 						<text class="name"></text>
 					</view>
 				</block>
@@ -329,7 +333,9 @@
 
 			// 点击改变头部标题
 			changeMenuTitle(data, index) {
-				if (!data || !data.length) return
+				if (!data || !data.length) {
+					return this.menu[index].checkedName = []
+				}
 				this.menu[index].checkedName = []
 				data.forEach((el) => {
 					this.menu[index].checkedName.push(el.name)
